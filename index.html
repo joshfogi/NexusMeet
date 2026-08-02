@@ -1,56 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexus Meet</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
-</head>
-<body>
-  <header class="glass-panel">
-    <div class="brand">Nexus Stream</div>
-    <div class="header-controls">
-      <select id="themeSelector">
-        <option value="default">Midnight Nebula</option>
-        <option value="cyberpunk">Cyberpunk Neon</option>
-        <option value="emerald">Emerald Glass</option>
-      </select>
-      <button id="copyLinkBtn" class="btn-primary">Copy Room Link</button>
-    </div>
-  </header>
+/* Container for the video stream */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 80vh; /* Keeps space for control buttons at bottom */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-  <div class="main-container">
-    <div class="video-section">
-      <div id="videoGrid" class="video-grid"></div>
-      <div id="captionOverlay" class="caption-overlay">Live Captions Initializing...</div>
-      <div class="controls-bar glass-panel">
-        <button id="micBtn" class="btn-ctrl" title="Toggle Mic">🎤</button>
-        <button id="camBtn" class="btn-ctrl" title="Toggle Camera">📹</button>
-        <button id="flipCamBtn" class="btn-ctrl" title="Flip Camera">🔄</button>
-        <button id="captionBtn" class="btn-ctrl" title="Toggle Captions">💬</button>
-      </div>
-    </div>
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    <div class="chat-section glass-panel">
-      <div class="chat-header">
-        <span>Live Room Chat</span>
-        <select id="langSelector" style="font-size: 0.75rem; padding: 4px;">
-          <option value="es">Translate to Spanish</option>
-          <option value="fr">Translate to French</option>
-          <option value="de">Translate to German</option>
-          <option value="ja">Translate to Japanese</option>
-        </select>
-      </div>
-      <div id="chatMessages" class="chat-messages"></div>
-      <div class="chat-input-area">
-        <input type="text" id="chatInput" placeholder="Type a message...">
-        <button id="sendBtn" class="btn-primary">Send</button>
-      </div>
-    </div>
-  </div>
+/* Control bar pinned to the bottom of the screen */
+.controls-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999; /* Keeps buttons above video video layer */
+  display: flex;
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 30px;
+}
 
-  <script src="app.js"></script>
-</body>
-</html>
