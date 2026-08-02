@@ -80,7 +80,18 @@
     <button class="btn" id="camBtn">Camera</button>
     <button class="btn btn-danger" id="leaveBtn">End</button>
   </div>
+<script>
+  const localVideo = document.getElementById('localVideo');
 
+  navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+    .then(stream => {
+      localVideo.srcObject = stream;
+    })
+    .catch(error => {
+      console.error('Error accessing media devices:', error);
+    });
+</script>
+  
 </body>
 </html>
 
